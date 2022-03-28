@@ -14,6 +14,7 @@ import { AddCircle, RemoveCircle } from '@mui/icons-material'
 import { useState } from 'react'
 import { Billboard } from '~/libs/feature-billboard'
 import Link from 'next/link'
+import { useStore } from '~/libs/feature-store'
 
 interface DrawerProps {
   open: boolean
@@ -22,20 +23,32 @@ interface DrawerProps {
 }
 
 export const Drawer = ({ open, onOpen, onClose }: DrawerProps) => {
-  const [value, setValue] = useState('')
+  const { selectedMenuAmount } = useStore()
+  const [temperature, setTemperature] = useState('hot')
+  const [size, setSize] = useState('')
 
-  const handleChange = (_, value) => {
-    setValue(value)
+  console.log('selectedMenuAmount', selectedMenuAmount)
+
+  const handleTemperatureChange = (_, value) => {
+    setTemperature(value)
+  }
+
+  const handleSizeChange = (_, value) => {
+    setSize(value)
+  }
+
+  const handleClose = () => {
+    setTemperature('hot')
+    setSize('')
+
+    onClose()
   }
 
   return (
     <SwipeableDrawer
       anchor="bottom"
       open={open}
-      ModalProps={{
-        keepMounted: true,
-      }}
-      onClose={onClose}
+      onClose={handleClose}
       onOpen={onOpen}
     >
       <Container sx={{ padding: 2 }}>
@@ -49,14 +62,14 @@ export const Drawer = ({ open, onOpen, onClose }: DrawerProps) => {
         <Stack spacing={2}>
           <ToggleButtonGroup
             color="primary"
-            value={value}
-            exclusive
+            value={temperature}
             fullWidth
-            onChange={handleChange}
+            exclusive
             sx={{
               width: '50%',
               margin: '0 auto',
             }}
+            onChange={handleTemperatureChange}
           >
             <ToggleButton value="hot" color="error">
               HOT
@@ -69,11 +82,11 @@ export const Drawer = ({ open, onOpen, onClose }: DrawerProps) => {
         </Typography>
         <Stack mt={1} spacing={2}>
           <ToggleButtonGroup
-            color="primary"
-            value={value}
+            color="standard"
+            value={size}
             exclusive
             fullWidth
-            onChange={() => {}}
+            onChange={handleSizeChange}
           >
             <ToggleButton value="short">Short</ToggleButton>
             <ToggleButton value="tall">Tall</ToggleButton>

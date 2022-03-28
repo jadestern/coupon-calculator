@@ -1,5 +1,4 @@
 import { Layout } from '~/libs/ui-layout'
-import { useStore } from '~/store'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { Grid, List, Paper } from '@mui/material'
@@ -9,14 +8,16 @@ import { SearchWrapper } from '~/libs/ui-search-wrapper'
 import { Billboard } from '~/libs/feature-billboard'
 import { Drawer } from '~/libs/feature-drawer'
 import { Search } from '~/libs/feature-search'
+import { useStore } from '~/libs/feature-store'
+import { Amount } from '~/libs/feature-menu/model'
 
 const MENUS = require('../libs/data-access-menu/menus.json')
 
 export default function Menus() {
   const menus = MENUS.data
-  const { couponAmount } = useStore()
-  let router = useRouter()
+  const { couponAmount, setSelectedMenuAmount } = useStore()
 
+  let router = useRouter()
   useEffect(() => {
     if (couponAmount === 0) {
       router.replace('/')
@@ -25,7 +26,8 @@ export default function Menus() {
 
   const [drawerOpen, setDrawerOpen] = useState(false)
 
-  const handleListItemClick = (id: number) => {
+  const handleListItemClick = (amount: Amount) => {
+    setSelectedMenuAmount(amount)
     setDrawerOpen(true)
   }
 
@@ -56,7 +58,7 @@ export default function Menus() {
                 image={menu.image}
                 name={menu.name}
                 amount={getMinAmount(menu.amount)}
-                onClick={() => handleListItemClick(menu.id)}
+                onClick={() => handleListItemClick(menu.amount)}
               />
             ))}
           </List>

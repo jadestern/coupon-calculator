@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { Autocomplete, Grid, TextField, Typography } from '@mui/material'
 import { Coupon } from '~/libs/feature-coupon'
 import { Layout } from '~/libs/ui-layout'
-import { useStore } from '~/store'
+import { useStore } from '~/libs/feature-store'
 
 const COUPONS = require('../libs/data-access-coupon/coupons.json')
 

@@ -1,8 +1,8 @@
 import Grid from '@mui/material/Grid'
 import { Divider, Typography } from '@mui/material'
-import { useStore } from '~/store'
 import { useMemo } from 'react'
 import { currency } from '~/libs/util'
+import { useStore } from '~/libs/feature-store'
 
 export const Billboard = () => {
   const { couponAmount, usedAmount } = useStore()
