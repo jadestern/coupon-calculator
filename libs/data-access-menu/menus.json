@@ -1,0 +1,49 @@
+{
+  "data": [
+    {
+      "id": 0,
+      "type": "음료",
+      "image": "https://www.starbucks.co.kr/upload/store/skuimg/2019/06/[5210008070]_20190627152902132.jpg",
+      "name": "파인 코코 그린 요거트 블렌디드",
+      "category": "New",
+      "amount": {
+        "solo": null,
+        "doppio": null,
+        "short": null,
+        "tall": 6500,
+        "grande": 7000,
+        "venti": 7500
+      }
+    },
+    {
+      "id": 1,
+      "type": "음료",
+      "image": "https://www.starbucks.co.kr/upload/store/skuimg/2019/06/[5210008070]_20190627152902132.jpg",
+      "name": "카페 아메리카노",
+      "category": "추천",
+      "amount": {
+        "solo": null,
+        "doppio": null,
+        "short": 4000,
+        "tall": 4500,
+        "grande": 5000,
+        "venti": 5500
+      }
+    },
+    {
+      "id": 2,
+      "type": "음료",
+      "image": "https://www.starbucks.co.kr/upload/store/skuimg/2019/06/[5210008070]_20190627152902132.jpg",
+      "name": "클래식 아포가토",
+      "category": "리저브 에스프레소",
+      "amount": {
+        "solo": null,
+        "doppio": null,
+        "short": null,
+        "tall": null,
+        "grande": 7000,
+        "venti": null
+      }
+    }
+  ]
+}
