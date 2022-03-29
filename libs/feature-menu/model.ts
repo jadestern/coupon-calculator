@@ -7,6 +7,10 @@ export interface Amount {
   venti: number | null
 }
 
+export type Size = keyof Amount
+
+export type Temperature = 'hot' | 'cold'
+
 export interface Menu {
   id: number
   type: string

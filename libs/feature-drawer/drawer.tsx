@@ -11,10 +11,12 @@ import {
 } from '@mui/material'
 import Grid from '@mui/material/Grid'
 import { AddCircle, RemoveCircle } from '@mui/icons-material'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Billboard } from '~/libs/feature-billboard'
 import Link from 'next/link'
 import { useStore } from '~/libs/feature-store'
+import { Size, Temperature } from '~/libs/feature-menu/model'
+import { currency } from '~/libs/util'
 
 interface DrawerProps {
   open: boolean
@@ -24,17 +26,29 @@ interface DrawerProps {
 
 export const Drawer = ({ open, onOpen, onClose }: DrawerProps) => {
   const { selectedMenuAmount } = useStore()
-  const [temperature, setTemperature] = useState('hot')
-  const [size, setSize] = useState('')
+  const [temperature, setTemperature] = useState<Temperature>('hot')
+  const [size, setSize] = useState<Size | ''>('')
+  const [count, setCount] = useState<number>(1)
 
-  console.log('selectedMenuAmount', selectedMenuAmount)
+  const selectableSizes: string[] = useMemo(() => {
+    return Object.keys(selectedMenuAmount).filter(
+      (size) => selectedMenuAmount[size] > 0
+    )
+  }, [selectedMenuAmount])
+
+  const resultAmount = useMemo(() => {
+    if (size === '') {
+      return 0
+    }
+    return selectedMenuAmount[size] * count
+  }, [size, selectedMenuAmount, count])
 
   const handleTemperatureChange = (_, value) => {
     setTemperature(value)
   }
 
   const handleSizeChange = (_, value) => {
-    setSize(value)
+    if (value) setSize(value)
   }
 
   const handleClose = () => {
@@ -42,6 +56,14 @@ export const Drawer = ({ open, onOpen, onClose }: DrawerProps) => {
     setSize('')
 
     onClose()
+  }
+
+  const subtractCount = () => {
+    setCount(count - 1)
+  }
+
+  const addCount = () => {
+    setCount(count + 1)
   }
 
   return (
@@ -63,8 +85,8 @@ export const Drawer = ({ open, onOpen, onClose }: DrawerProps) => {
           <ToggleButtonGroup
             color="primary"
             value={temperature}
-            fullWidth
             exclusive
+            fullWidth
             sx={{
               width: '50%',
               margin: '0 auto',
@@ -88,10 +110,11 @@ export const Drawer = ({ open, onOpen, onClose }: DrawerProps) => {
             fullWidth
             onChange={handleSizeChange}
           >
-            <ToggleButton value="short">Short</ToggleButton>
-            <ToggleButton value="tall">Tall</ToggleButton>
-            <ToggleButton value="grande">Grande</ToggleButton>
-            <ToggleButton value="venti">Venti</ToggleButton>
+            {selectableSizes.map((size) => (
+              <ToggleButton key={size} value={size}>
+                {size}
+              </ToggleButton>
+            ))}
           </ToggleButtonGroup>
         </Stack>
         <Grid
@@ -116,38 +139,43 @@ export const Drawer = ({ open, onOpen, onClose }: DrawerProps) => {
               <IconButton
                 aria-label="minus"
                 component="span"
+                disabled={count === 1}
                 sx={{
-                  color: 'gray',
+                  color: 'black',
                 }}
+                onClick={subtractCount}
               >
                 <RemoveCircle />
               </IconButton>
-              <Typography variant="h6">9</Typography>
+              <Typography variant="h6">{count}</Typography>
               <IconButton
                 aria-label="plus"
                 component="span"
                 sx={{
                   color: 'black',
                 }}
+                onClick={addCount}
               >
                 <AddCircle />
               </IconButton>
             </Grid>
           </Grid>
           <Grid item>
-            <Typography variant="h6">5,000 원</Typography>
+            <Typography variant="h6">{currency(resultAmount)} 원</Typography>
           </Grid>
         </Grid>
         <Grid container justifyContent="space-evenly" mt={2}>
           <Grid item>
-            <Button variant="outlined">담고 메뉴 더 보기</Button>
+            <Button disabled={size === ''} variant="contained">
+              담고 메뉴 더 보기
+            </Button>
           </Grid>
           <Grid item>
-            <Link href="/cart">
-              <a>
-                <Button variant="outlined">담고 장바구니 가기</Button>
-              </a>
-            </Link>
+            <Button disabled={size === ''} variant="outlined">
+              <Link href="/cart">
+                <a>담고 장바구니 가기</a>
+              </Link>
+            </Button>
           </Grid>
         </Grid>
       </Container>
