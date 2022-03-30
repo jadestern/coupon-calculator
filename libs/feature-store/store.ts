@@ -112,4 +112,10 @@ export const useStore = create((set: Function, get: Function) => ({
       }))
     }
   },
+  removeCart: (id: number) => {
+    set((state: State) => ({
+      ...state,
+      cart: state.cart.filter((item) => item.id !== id),
+    }))
+  },
 }))
