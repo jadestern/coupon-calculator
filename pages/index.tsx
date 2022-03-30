@@ -11,7 +11,7 @@ const COUPONS = require('../libs/data-access-coupon/coupons.json')
 export default function Home() {
   const menus = useGetMenus()
   const { setMenus, setCouponAmount } = useStore()
-  const router = useRouter()
+  let router = useRouter()
   const coupons = COUPONS.data
 
   const handleChange = (_: never, value: Coupon | null) => {

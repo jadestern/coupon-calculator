@@ -22,6 +22,8 @@ import { currency } from '~/libs/util'
 import NextLink from 'next/link'
 import { useMemo, useState } from 'react'
 import { Drawer } from '~/libs/feature-drawer'
+import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore'
+import { useRouter } from 'next/router'
 
 const ListItem = styled(MuiListItem)`
   .MuiListItemSecondaryAction-root {
@@ -30,7 +32,8 @@ const ListItem = styled(MuiListItem)`
 `
 
 export default function Cart() {
-  const { menus, cart, removeCart, updateCart } = useStore()
+  let router = useRouter()
+  const { menus, cart, removeCart, resetCart, updateCart } = useStore()
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [selectedCartItemId, setSelectedCartItemId] = useState<number>()
 
@@ -45,6 +48,16 @@ export default function Cart() {
 
   const handleRemove = (id: number) => () => {
     removeCart(id)
+  }
+
+  const handleClickCartReset = () => {
+    resetCart()
+    router.push('/menus')
+  }
+
+  const handleClickAllReset = () => {
+    resetCart()
+    router.push('/')
   }
 
   return (
@@ -140,6 +153,20 @@ export default function Cart() {
           )
         })}
       </List>
+      <Grid container direction="row" textAlign="right">
+        <Grid item xs={12}>
+          <Button onClick={handleClickCartReset}>
+            <SettingsBackupRestoreIcon />
+            메뉴 선택 초기화
+          </Button>
+        </Grid>
+        <Grid item xs={12}>
+          <Button onClick={handleClickAllReset}>
+            <SettingsBackupRestoreIcon />
+            상품명 입력으로 돌아가기
+          </Button>
+        </Grid>
+      </Grid>
       {drawerOpen && (
         <Drawer
           open={drawerOpen}

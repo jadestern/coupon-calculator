@@ -119,6 +119,12 @@ export const useStore = create((set: Function, get: Function) => ({
       cart: state.cart.filter((item) => item.id !== id),
     }))
   },
+  resetCart: () => {
+    set((state: State) => ({
+      ...state,
+      cart: [],
+    }))
+  },
   updateCart: (props) => {
     set((state: State) => ({
       ...state,
