@@ -13,18 +13,35 @@ import Grid from '@mui/material/Grid'
 import { AddCircle, RemoveCircle } from '@mui/icons-material'
 import { useMemo, useState } from 'react'
 import { Billboard } from '~/libs/feature-billboard'
-import Link from 'next/link'
 import { useStore } from '~/libs/feature-store'
 import { Size, Temperature } from '~/libs/feature-menu/model'
 import { currency } from '~/libs/util'
 
+interface stateProps {
+  temperature: Temperature
+  size: Size | ''
+  count: number
+}
+
 interface DrawerProps {
   open: boolean
+  buttonLabelLeft: string
+  buttonLabelRight: string
+  onClickLeft: (props: stateProps) => void
+  onClickRight: (props: stateProps) => void
   onOpen: () => void
   onClose: () => void
 }
 
-export const Drawer = ({ open, onOpen, onClose }: DrawerProps) => {
+export const Drawer = ({
+  open,
+  buttonLabelLeft,
+  buttonLabelRight,
+  onClickLeft,
+  onClickRight,
+  onOpen,
+  onClose,
+}: DrawerProps) => {
   const { selectedMenuAmount } = useStore()
   const [temperature, setTemperature] = useState<Temperature>('hot')
   const [size, setSize] = useState<Size | ''>('')
@@ -51,10 +68,14 @@ export const Drawer = ({ open, onOpen, onClose }: DrawerProps) => {
     if (value) setSize(value)
   }
 
-  const handleClose = () => {
+  const init = () => {
     setTemperature('hot')
     setSize('')
+    setCount(1)
+  }
 
+  const handleClose = () => {
+    init()
     onClose()
   }
 
@@ -64,6 +85,16 @@ export const Drawer = ({ open, onOpen, onClose }: DrawerProps) => {
 
   const addCount = () => {
     setCount(count + 1)
+  }
+
+  const handleClickLeft = () => {
+    onClickLeft({ temperature, size, count })
+    handleClose()
+  }
+
+  const handleClickRight = () => {
+    onClickRight({ temperature, size, count })
+    handleClose()
   }
 
   return (
@@ -166,15 +197,21 @@ export const Drawer = ({ open, onOpen, onClose }: DrawerProps) => {
         </Grid>
         <Grid container justifyContent="space-evenly" mt={2}>
           <Grid item>
-            <Button disabled={size === ''} variant="contained">
-              담고 메뉴 더 보기
+            <Button
+              disabled={size === ''}
+              variant="contained"
+              onClick={handleClickLeft}
+            >
+              {buttonLabelLeft}
             </Button>
           </Grid>
           <Grid item>
-            <Button disabled={size === ''} variant="outlined">
-              <Link href="/cart">
-                <a>담고 장바구니 가기</a>
-              </Link>
+            <Button
+              disabled={size === ''}
+              variant="outlined"
+              onClick={handleClickRight}
+            >
+              {buttonLabelRight}
             </Button>
           </Grid>
         </Grid>

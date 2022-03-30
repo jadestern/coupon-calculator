@@ -15,7 +15,8 @@ const MENUS = require('../libs/data-access-menu/menus.json')
 
 export default function Menus() {
   const menus = MENUS.data
-  const { couponAmount, setSelectedMenuAmount } = useStore()
+  const { couponAmount, setSelectedMenuAmount, addCart } = useStore()
+  const [selectedMenuId, setSelectedMenuId] = useState<number | undefined>()
 
   let router = useRouter()
   useEffect(() => {
@@ -26,7 +27,8 @@ export default function Menus() {
 
   const [drawerOpen, setDrawerOpen] = useState(false)
 
-  const handleListItemClick = (amount: Amount) => {
+  const handleListItemClick = (id: number, amount: Amount) => {
+    setSelectedMenuId(id)
     setSelectedMenuAmount(amount)
     setDrawerOpen(true)
   }
@@ -58,7 +60,7 @@ export default function Menus() {
                 image={menu.image}
                 name={menu.name}
                 amount={getMinAmount(menu.amount)}
-                onClick={() => handleListItemClick(menu.amount)}
+                onClick={() => handleListItemClick(menu.id, menu.amount)}
               />
             ))}
           </List>
@@ -66,6 +68,21 @@ export default function Menus() {
       </Grid>
       <Drawer
         open={drawerOpen}
+        buttonLabelLeft={'담고 메뉴 더 보기'}
+        buttonLabelRight={'담고 장바구니 가기'}
+        onClickLeft={(props) => {
+          addCart({
+            id: selectedMenuId,
+            ...props,
+          })
+        }}
+        onClickRight={(props) => {
+          addCart({
+            id: selectedMenuId,
+            ...props,
+          })
+          router.push('/cart')
+        }}
         onClose={() => setDrawerOpen(false)}
         onOpen={() => setDrawerOpen(true)}
       />

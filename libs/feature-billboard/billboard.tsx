@@ -18,13 +18,13 @@ export const Billboard = () => {
       <Divider orientation="vertical" variant="middle" flexItem />
       <Grid item xs={3} textAlign="center">
         <Typography variant="subtitle1">사용금액</Typography>
-        <Typography variant="button">{currency(usedAmount)} 원</Typography>
+        <Typography variant="button">{currency(usedAmount())} 원</Typography>
       </Grid>
       <Divider orientation="vertical" variant="middle" flexItem />
       <Grid item xs={3} textAlign="center">
         <Typography variant="subtitle1">남은금액</Typography>
         <Typography variant="button" color={isRemaining ? 'red' : 'blue'}>
-          {isRemaining ? '+' : '-'}
+          {isRemaining ? '+' : ''}
           {currency(remainingAmount)} 원
         </Typography>
       </Grid>
