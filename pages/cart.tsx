@@ -24,6 +24,7 @@ import { useMemo, useState } from 'react'
 import { Drawer } from '~/libs/feature-drawer'
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore'
 import { useRouter } from 'next/router'
+import { Amount } from '~/libs/feature-menu/model'
 
 const ListItem = styled(MuiListItem)`
   .MuiListItemSecondaryAction-root {
@@ -33,7 +34,14 @@ const ListItem = styled(MuiListItem)`
 
 export default function Cart() {
   let router = useRouter()
-  const { menus, cart, removeCart, resetCart, updateCart } = useStore()
+  const {
+    menus,
+    cart,
+    removeCart,
+    resetCart,
+    updateCart,
+    setSelectedMenuAmount,
+  } = useStore()
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [selectedCartItemId, setSelectedCartItemId] = useState<number>()
 
@@ -41,8 +49,9 @@ export default function Cart() {
     return cart.find((cartItem) => cartItem.id === selectedCartItemId)
   }, [selectedCartItemId, cart])
 
-  const handleChangeOption = (id: number) => () => {
+  const handleChangeOption = (id: number, amount: Amount) => () => {
     setSelectedCartItemId(id)
+    setSelectedMenuAmount(amount)
     setDrawerOpen(true)
   }
 
@@ -133,7 +142,9 @@ export default function Cart() {
                       alignItems="center"
                     >
                       <Grid item>
-                        <Button onClick={handleChangeOption(cartItem.id)}>
+                        <Button
+                          onClick={handleChangeOption(cartItem.id, menu.amount)}
+                        >
                           옵션 변경
                         </Button>
                       </Grid>
