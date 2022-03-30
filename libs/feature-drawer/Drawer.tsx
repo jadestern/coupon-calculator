@@ -11,7 +11,7 @@ import {
 } from '@mui/material'
 import Grid from '@mui/material/Grid'
 import { AddCircle, RemoveCircle } from '@mui/icons-material'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Billboard } from '~/libs/feature-billboard'
 import { useStore } from '~/libs/feature-store'
 import { Size, Temperature } from '~/libs/feature-menu/model'
@@ -25,9 +25,12 @@ interface stateProps {
 
 interface DrawerProps {
   open: boolean
+  defaultTemperature?: Temperature
+  defaultSize?: Size | ''
+  defaultCount?: number
   buttonLabelLeft: string
   buttonLabelRight: string
-  onClickLeft: (props: stateProps) => void
+  onClickLeft?: (props: stateProps) => void
   onClickRight: (props: stateProps) => void
   onOpen: () => void
   onClose: () => void
@@ -35,6 +38,9 @@ interface DrawerProps {
 
 export const Drawer = ({
   open,
+  defaultTemperature = 'hot',
+  defaultSize = '',
+  defaultCount = 1,
   buttonLabelLeft,
   buttonLabelRight,
   onClickLeft,
@@ -43,9 +49,16 @@ export const Drawer = ({
   onClose,
 }: DrawerProps) => {
   const { selectedMenuAmount } = useStore()
-  const [temperature, setTemperature] = useState<Temperature>('hot')
-  const [size, setSize] = useState<Size | ''>('')
-  const [count, setCount] = useState<number>(1)
+  const [temperature, setTemperature] =
+    useState<Temperature>(defaultTemperature)
+  const [size, setSize] = useState<Size | ''>(defaultSize)
+  const [count, setCount] = useState<number>(defaultCount)
+
+  useEffect(() => {
+    setTemperature(defaultTemperature)
+    setSize(defaultSize)
+    setCount(defaultCount)
+  }, [defaultTemperature, defaultSize, defaultCount])
 
   const selectableSizes: string[] = useMemo(() => {
     return Object.keys(selectedMenuAmount).filter(
@@ -88,7 +101,7 @@ export const Drawer = ({
   }
 
   const handleClickLeft = () => {
-    if (size !== '') {
+    if (size !== '' && onClickLeft) {
       onClickLeft({ temperature, size, count })
     }
     handleClose()

@@ -29,6 +29,7 @@ interface State extends Values {
   setUsedAmount: (price: number) => void
   setSelectedMenuAmount: (amount: Amount) => void
   addCart: (props: CartItem) => void
+  updateCart: (props: CartItem) => void
 }
 
 type KeyOfValue = keyof Values
@@ -116,6 +117,21 @@ export const useStore = create((set: Function, get: Function) => ({
     set((state: State) => ({
       ...state,
       cart: state.cart.filter((item) => item.id !== id),
+    }))
+  },
+  updateCart: (props) => {
+    set((state: State) => ({
+      ...state,
+      cart: get().cart.map((item) => {
+        if (item.id === props.id) {
+          return {
+            ...item,
+            ...props,
+          }
+        } else {
+          return item
+        }
+      }),
     }))
   },
 }))

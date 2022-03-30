@@ -20,6 +20,8 @@ import { Billboard } from '~/libs/feature-billboard'
 import { useStore } from '~/libs/feature-store'
 import { currency } from '~/libs/util'
 import NextLink from 'next/link'
+import { useMemo, useState } from 'react'
+import { Drawer } from '~/libs/feature-drawer'
 
 const ListItem = styled(MuiListItem)`
   .MuiListItemSecondaryAction-root {
@@ -28,10 +30,17 @@ const ListItem = styled(MuiListItem)`
 `
 
 export default function Cart() {
-  const { menus, cart, removeCart } = useStore()
+  const { menus, cart, removeCart, updateCart } = useStore()
+  const [drawerOpen, setDrawerOpen] = useState(false)
+  const [selectedCartItemId, setSelectedCartItemId] = useState<number>()
 
-  const handleChangeOption = () => {
-    console.log('11')
+  const selectedCartItem = useMemo(() => {
+    return cart.find((cartItem) => cartItem.id === selectedCartItemId)
+  }, [selectedCartItemId, cart])
+
+  const handleChangeOption = (id: number) => () => {
+    setSelectedCartItemId(id)
+    setDrawerOpen(true)
   }
 
   const handleRemove = (id: number) => () => {
@@ -49,7 +58,7 @@ export default function Cart() {
       <Divider />
       {cart.length === 0 && (
         <Grid mt={2}>
-          <Alert mt={2} severity={'warning'}>
+          <Alert severity={'warning'}>
             장바구니에 상품이 없습니다.&nbsp;
             <NextLink href="/menus" passHref>
               <Link>메뉴로 돌아가기</Link>
@@ -111,7 +120,9 @@ export default function Cart() {
                       alignItems="center"
                     >
                       <Grid item>
-                        <Button onClick={handleChangeOption}>옵션 변경</Button>
+                        <Button onClick={handleChangeOption(cartItem.id)}>
+                          옵션 변경
+                        </Button>
                       </Grid>
                       <Grid item>
                         <Typography component="span" variant="h6" color="black">
@@ -129,6 +140,24 @@ export default function Cart() {
           )
         })}
       </List>
+      {drawerOpen && (
+        <Drawer
+          open={drawerOpen}
+          defaultTemperature={selectedCartItem?.temperature}
+          defaultSize={selectedCartItem?.size}
+          defaultCount={selectedCartItem?.count}
+          buttonLabelLeft={'취소'}
+          buttonLabelRight={'옵션 변경'}
+          onClickRight={(props) => {
+            updateCart({
+              id: selectedCartItemId,
+              ...props,
+            })
+          }}
+          onClose={() => setDrawerOpen(false)}
+          onOpen={() => setDrawerOpen(true)}
+        />
+      )}
     </Layout>
   )
 }
