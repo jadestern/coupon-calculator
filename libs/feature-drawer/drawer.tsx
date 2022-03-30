@@ -19,7 +19,7 @@ import { currency } from '~/libs/util'
 
 interface stateProps {
   temperature: Temperature
-  size: Size | ''
+  size: Size
   count: number
 }
 
@@ -88,12 +88,16 @@ export const Drawer = ({
   }
 
   const handleClickLeft = () => {
-    onClickLeft({ temperature, size, count })
+    if (size !== '') {
+      onClickLeft({ temperature, size, count })
+    }
     handleClose()
   }
 
   const handleClickRight = () => {
-    onClickRight({ temperature, size, count })
+    if (size !== '') {
+      onClickRight({ temperature, size, count })
+    }
     handleClose()
   }
 
