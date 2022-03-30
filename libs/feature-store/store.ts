@@ -2,10 +2,6 @@ import create from 'zustand'
 import { Amount, Menu, Size, Temperature } from '~/libs/feature-menu/model'
 import { find, flow, get as lodashGet } from 'lodash/fp'
 
-const MENUS: {
-  data: Menu[]
-} = require('../../libs/data-access-menu/menus.json')
-
 interface CartItem {
   id: number
   temperature: Temperature
@@ -14,6 +10,7 @@ interface CartItem {
 }
 
 interface Values {
+  menus: Menu[]
   // 쿠폰 금액
   couponAmount: number
   // 사용 금액
@@ -27,6 +24,7 @@ interface Values {
 }
 
 interface State extends Values {
+  setMenus: (menus: Menu[]) => void
   setCouponAmount: (price: number) => void
   setUsedAmount: (price: number) => void
   setSelectedMenuAmount: (amount: Amount) => void
@@ -44,6 +42,8 @@ const setPredicate =
     }))
 
 export const useStore = create((set: Function, get: Function) => ({
+  menus: [] as Menu[],
+  setMenus: setPredicate(set, 'menus'),
   couponAmount: 0,
   setCouponAmount: setPredicate<number>(set, 'couponAmount'),
   usedAmount: () => {
@@ -54,7 +54,7 @@ export const useStore = create((set: Function, get: Function) => ({
     return get()
       .cart.map((item) => {
         return (
-          MENUS.data.find((menu) => menu.id === item.id).amount[item.size] *
+          get().menus.find((menu) => menu.id === item.id).amount[item.size] *
           item.count
         )
       })
@@ -69,9 +69,9 @@ export const useStore = create((set: Function, get: Function) => ({
     tall: null,
     grande: null,
     venti: null,
-  },
+  } as Amount,
   setSelectedMenuAmount: setPredicate<Amount>(set, 'selectedMenuAmount'),
-  cart: [],
+  cart: [] as CartItem[],
   addCart: ({ id, temperature, size, count }: CartItem) => {
     const already = flow(
       lodashGet('cart'),

@@ -3,11 +3,14 @@ import { Autocomplete, Grid, TextField, Typography } from '@mui/material'
 import { Coupon } from '~/libs/feature-coupon'
 import { Layout } from '~/libs/ui-layout'
 import { useStore } from '~/libs/feature-store'
+import { useEffect } from 'react'
+import { useGetMenus } from '~/libs/data-access-menu'
 
 const COUPONS = require('../libs/data-access-coupon/coupons.json')
 
 export default function Home() {
-  const { setCouponAmount } = useStore()
+  const menus = useGetMenus()
+  const { setMenus, setCouponAmount } = useStore()
   const router = useRouter()
   const coupons = COUPONS.data
 
@@ -17,6 +20,10 @@ export default function Home() {
     setCouponAmount(value.price)
     router.push('/menus')
   }
+
+  useEffect(() => {
+    setMenus(menus)
+  }, [menus, setMenus])
 
   return (
     <Layout>
