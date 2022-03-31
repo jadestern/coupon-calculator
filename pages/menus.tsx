@@ -7,14 +7,16 @@ import { MenuItem } from '~/libs/ui-menu-item'
 import { SearchWrapper } from '~/libs/ui-search-wrapper'
 import { Billboard } from '~/libs/feature-billboard'
 import { Drawer } from '~/libs/feature-drawer'
-import { Search } from '~/libs/feature-search'
+import { Search } from '~/libs/ui-search'
 import { useStore } from '~/libs/feature-store'
 import { Amount } from '~/libs/feature-menu/model'
 import { Floating } from '~/libs/ui-floating'
+import { useSearch } from '~/libs/feature-search'
 
 export default function Menus() {
   const { menus, couponAmount, setSelectedMenuAmount, addCart } = useStore()
   const [selectedMenuId, setSelectedMenuId] = useState<number | undefined>()
+  const { filteredMenus, debouncedHandleChange } = useSearch(menus)
 
   let router = useRouter()
   useEffect(() => {
@@ -38,11 +40,11 @@ export default function Menus() {
       </Floating>
       <Grid container mt={2}>
         <SearchWrapper>
-          <Search />
+          <Search onChange={debouncedHandleChange} />
         </SearchWrapper>
         <Grid item xs={12}>
           <List>
-            {menus.map((menu) => (
+            {filteredMenus.map((menu) => (
               <MenuItem
                 key={menu.id}
                 image={menu.image}

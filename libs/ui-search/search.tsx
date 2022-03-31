@@ -1,7 +1,16 @@
 import { IconButton, InputBase, Paper } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
+import { ChangeEvent } from 'react'
 
-export const Search = () => {
+interface SearchProps {
+  onChange: (value: string) => void
+}
+
+export const Search = ({ onChange }: SearchProps) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    onChange(event.target.value)
+  }
+
   return (
     <Paper
       sx={{
@@ -16,6 +25,7 @@ export const Search = () => {
         sx={{ ml: 1 }}
         placeholder="상품 검색"
         inputProps={{ 'aria-label': '상품검색' }}
+        onChange={handleChange}
       />
       <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
         <SearchIcon />
