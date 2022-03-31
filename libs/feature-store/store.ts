@@ -1,12 +1,17 @@
 import create from 'zustand'
 import { Amount, Menu, Size, Temperature } from '~/libs/feature-menu/model'
 import { find, flow, get as lodashGet } from 'lodash/fp'
+import { v4 as uuidv4 } from 'uuid'
 
-interface CartItem {
-  id: number
+interface UpdateCartProps {
+  menuId: number
   temperature: Temperature
   size: Size
   count: number
+}
+
+interface CartItem extends UpdateCartProps {
+  id: number
 }
 
 interface Values {
@@ -53,10 +58,11 @@ export const useStore = create((set: Function, get: Function) => ({
     }
 
     return get()
-      .cart.map((item) => {
+      .cart.map((item: CartItem) => {
         return (
-          get().menus.find((menu) => menu.id === item.id).amount[item.size] *
-          item.count
+          get().menus.find((menu) => menu.id === item.menuId).amount[
+            item.size
+          ] * item.count
         )
       })
       .reduce((acc, cur) => acc + cur, 0)
@@ -73,11 +79,11 @@ export const useStore = create((set: Function, get: Function) => ({
   } as Amount,
   setSelectedMenuAmount: setPredicate<Amount>(set, 'selectedMenuAmount'),
   cart: [] as CartItem[],
-  addCart: ({ id, temperature, size, count }: CartItem) => {
-    const already = flow(
+  addCart: ({ menuId, temperature, size, count }: UpdateCartProps) => {
+    const already: CartItem = flow(
       lodashGet('cart'),
       find({
-        id,
+        menuId,
         temperature,
         size,
       })
@@ -85,7 +91,7 @@ export const useStore = create((set: Function, get: Function) => ({
 
     if (already) {
       const result = get().cart.map((item) => {
-        if (item.id === id) {
+        if (item.id === already.id) {
           return {
             ...item,
             count: item.count + count,
@@ -104,7 +110,8 @@ export const useStore = create((set: Function, get: Function) => ({
         cart: [
           ...state.cart,
           {
-            id,
+            id: uuidv4(),
+            menuId,
             temperature,
             size,
             count,

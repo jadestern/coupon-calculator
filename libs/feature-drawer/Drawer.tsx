@@ -172,12 +172,7 @@ export const Drawer = ({
           mt={2}
           alignItems="center"
         >
-          <Grid
-            item
-            sx={{
-              width: '35%',
-            }}
-          >
+          <Grid item sx={{ width: '35%' }}>
             <Grid
               container
               direction="row"

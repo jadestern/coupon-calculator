@@ -90,7 +90,7 @@ export default function Cart() {
       )}
       <List>
         {cart.map((cartItem) => {
-          const menu = menus.find((menu) => menu.id === cartItem.id)
+          const menu = menus.find((menu) => menu.id === cartItem.menuId)
           return (
             <ListItem
               key={cartItem.id}

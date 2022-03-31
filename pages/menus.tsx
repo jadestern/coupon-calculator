@@ -62,13 +62,13 @@ export default function Menus() {
         buttonLabelRight={'담고 장바구니 가기'}
         onClickLeft={(props) => {
           addCart({
-            id: selectedMenuId,
+            menuId: selectedMenuId,
             ...props,
           })
         }}
         onClickRight={(props) => {
           addCart({
-            id: selectedMenuId,
+            menuId: selectedMenuId,
             ...props,
           })
           router.push('/cart')
