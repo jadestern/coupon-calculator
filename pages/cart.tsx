@@ -60,7 +60,6 @@ export default function Cart() {
   }
 
   const handleClickCartReset = () => {
-    resetCart()
     router.push('/menus')
   }
 
@@ -74,9 +73,24 @@ export default function Cart() {
       <Floating>
         <Billboard />
       </Floating>
-      <Typography variant="h5" mt={2}>
-        주문 메뉴
-      </Typography>
+      <Grid container alignItems="flex-end">
+        <Grid item xs={5}>
+          <Typography variant="h5" mt={2}>
+            주문 메뉴
+          </Typography>
+        </Grid>
+        <Grid item xs={3}>
+          <Button onClick={handleClickCartReset}>
+            <SettingsBackupRestoreIcon />
+            메뉴
+          </Button>
+        </Grid>
+        <Grid item xs={4}>
+          <Button onClick={handleClickAllReset}>
+            <SettingsBackupRestoreIcon />맨 처음으로
+          </Button>
+        </Grid>
+      </Grid>
       <Divider />
       {cart.length === 0 && (
         <Grid mt={2}>
@@ -164,20 +178,6 @@ export default function Cart() {
           )
         })}
       </List>
-      <Grid container direction="row" textAlign="right">
-        <Grid item xs={12}>
-          <Button onClick={handleClickCartReset}>
-            <SettingsBackupRestoreIcon />
-            메뉴 선택 초기화
-          </Button>
-        </Grid>
-        <Grid item xs={12}>
-          <Button onClick={handleClickAllReset}>
-            <SettingsBackupRestoreIcon />
-            상품명 입력으로 돌아가기
-          </Button>
-        </Grid>
-      </Grid>
       {drawerOpen && (
         <Drawer
           open={drawerOpen}

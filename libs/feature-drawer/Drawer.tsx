@@ -74,7 +74,7 @@ export const Drawer = ({
   }, [size, selectedMenuAmount, count])
 
   const handleTemperatureChange = (_, value) => {
-    setTemperature(value)
+    if (value) setTemperature(value)
   }
 
   const handleSizeChange = (_, value) => {
