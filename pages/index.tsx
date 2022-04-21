@@ -5,14 +5,13 @@ import { Layout } from '~/libs/ui-layout'
 import { useStore } from '~/libs/feature-store'
 import { useEffect } from 'react'
 import { useGetMenus } from '~/libs/data-access-menu'
-
-const COUPONS = require('../libs/data-access-coupon/coupons.json')
+import { useGetCoupons } from '~/libs/data-access-coupon'
 
 export default function Home() {
+  const coupons = useGetCoupons()
   const menus = useGetMenus()
   const { setMenus, setCouponAmount } = useStore()
   let router = useRouter()
-  const coupons = COUPONS.data
 
   const handleChange = (_: never, value: Coupon | null) => {
     if (!value) return
