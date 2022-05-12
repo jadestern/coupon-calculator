@@ -1,17 +1,19 @@
 import { useRouter } from 'next/router'
 import { Autocomplete, Grid, TextField, Typography } from '@mui/material'
-import { Coupon } from '~/libs/feature-coupon'
 import { Layout } from '~/libs/ui-layout'
 import { useStore } from '~/libs/feature-store'
 import { useEffect } from 'react'
 import { useGetMenus } from '~/libs/data-access-menu'
-import { useGetCoupons } from '~/libs/data-access-coupon'
+import { useQuery } from 'react-query'
+import { getCoupons } from '~/libs/data-access-coupon/getCoupons'
+import { mapCoupons } from '~/libs/util'
+import { Coupon } from '~/libs/data-access-coupon'
 
 export default function Home() {
-  const coupons = useGetCoupons()
+  let router = useRouter()
+  const { data, isLoading } = useQuery('coupons', getCoupons)
   const menus = useGetMenus()
   const { setMenus, setCouponAmount } = useStore()
-  let router = useRouter()
 
   const handleChange = (_: never, value: Coupon | null) => {
     if (!value) return
@@ -23,6 +25,8 @@ export default function Home() {
   useEffect(() => {
     setMenus(menus)
   }, [menus, setMenus])
+
+  console.log('mapCoupons(data?.data)', mapCoupons(data?.data))
 
   return (
     <Layout>
@@ -41,8 +45,9 @@ export default function Home() {
         <Grid>
           <Autocomplete
             disablePortal
-            options={coupons}
+            options={mapCoupons(data?.data)}
             sx={{ width: 300 }}
+            loading={isLoading}
             renderInput={(params) => (
               <TextField
                 {...params}
