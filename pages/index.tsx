@@ -26,8 +26,6 @@ export default function Home() {
     setMenus(menus)
   }, [menus, setMenus])
 
-  console.log('mapCoupons(data?.data)', mapCoupons(data?.data))
-
   return (
     <Layout>
       <Grid
@@ -45,7 +43,7 @@ export default function Home() {
         <Grid>
           <Autocomplete
             disablePortal
-            options={mapCoupons(data?.data)}
+            options={mapCoupons(data)}
             sx={{ width: 300 }}
             loading={isLoading}
             renderInput={(params) => (

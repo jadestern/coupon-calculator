@@ -1,3 +1,5 @@
+import COUPONS from './coupons.json'
+
 export const getCoupons = () => {
-  return fetch('/api/coupons').then((res) => res.json())
+  return COUPONS.data
 }
