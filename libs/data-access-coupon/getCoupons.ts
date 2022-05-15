@@ -1,5 +1,6 @@
 import COUPONS from './coupons.json'
+import { mapCoupons } from '~/libs/util'
 
 export const getCoupons = () => {
-  return COUPONS.data
+  return mapCoupons(COUPONS.data)
 }

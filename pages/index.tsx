@@ -3,16 +3,15 @@ import { Autocomplete, Grid, TextField, Typography } from '@mui/material'
 import { Layout } from '~/libs/ui-layout'
 import { useStore } from '~/libs/feature-store'
 import { useEffect } from 'react'
-import { useGetMenus } from '~/libs/data-access-menu'
 import { useQuery } from 'react-query'
 import { getCoupons } from '~/libs/data-access-coupon/getCoupons'
-import { mapCoupons } from '~/libs/util'
 import { Coupon } from '~/libs/data-access-coupon'
+import { getMenus } from '~/libs/data-access-menu'
 
 export default function Home() {
   let router = useRouter()
-  const { data, isLoading } = useQuery('coupons', getCoupons)
-  const menus = useGetMenus()
+  const { data: coupons, isLoading } = useQuery('coupons', getCoupons)
+  const { data: menus } = useQuery('menus', getMenus)
   const { setMenus, setCouponAmount } = useStore()
 
   const handleChange = (_: never, value: Coupon | null) => {
@@ -43,7 +42,7 @@ export default function Home() {
         <Grid>
           <Autocomplete
             disablePortal
-            options={mapCoupons(data)}
+            options={coupons}
             sx={{ width: 300 }}
             loading={isLoading}
             renderInput={(params) => (

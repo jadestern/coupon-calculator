@@ -1,1 +1,1 @@
-export * from './useGetMenus'
+export * from './getMenus'
