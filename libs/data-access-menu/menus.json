@@ -32,7 +32,15 @@
     },
     {
       "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[9200000002081]_20210415133656839.jpg",
-      "name": "돌체 콜드 브루"
+      "name": "돌체 콜드 브루",
+      "amount": {
+        "solo": null,
+        "doppio": null,
+        "short": 6000,
+        "tall": 6600,
+        "grande": 7000,
+        "venti": null
+      }
     },
     {
       "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[9200000000487]_20210430112319040.jpg",
