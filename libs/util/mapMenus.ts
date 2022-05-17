@@ -5,9 +5,9 @@ export const mapMenus = (data: RawDataItem[]): formattedDataItem[] => {
     return {
       ...item,
       id: index,
-      type: 'dummy',
-      category: 'dummy',
-      amount: {
+      type: item.type ?? '',
+      category: item.category ?? '',
+      amount: item.amount ?? {
         solo: 0,
         doppio: 0,
         short: 0,
