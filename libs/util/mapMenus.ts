@@ -1,4 +1,7 @@
-import { formattedDataItem, RawDataItem } from '~/libs/data-access-menu/model'
+import {
+  formattedDataItem, RawDataItem,
+} from '~/libs/data-access-menu/model'
+import sum from 'lodash/sum'
 
 export const mapMenus = (data: RawDataItem[]): formattedDataItem[] => {
   return data.map((item, index: number) => {
@@ -16,5 +19,5 @@ export const mapMenus = (data: RawDataItem[]): formattedDataItem[] => {
         venti: 0,
       },
     }
-  })
+  }).filter((item) => sum(Object.values(item.amount)) > 0) // TODO 데이터 모두 채워지면 제거
 }
