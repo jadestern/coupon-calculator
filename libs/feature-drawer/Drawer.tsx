@@ -81,7 +81,7 @@ export const Drawer = ({
 
   const init = () => {
     setTemperature('hot')
-    setSize('')
+    setSize('tall')
     setCount(1)
   }
 
