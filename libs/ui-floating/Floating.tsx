@@ -8,17 +8,17 @@ interface FloatingProps {
 export const Floating = ({ children }: FloatingProps) => {
   return (
     <Paper
-      elevation={2}
-      sx={{
+      elevation={ 2 }
+      sx={ {
         position: 'fixed',
-        bottom: '8px',
+        bottom: 'calc(env(safe-area-inset-bottom) + 8px)',
         left: '8px',
         right: '8px',
         zIndex: 1,
         padding: 1,
-      }}
+      } }
     >
-      {children}
+      { children }
     </Paper>
   )
 }
