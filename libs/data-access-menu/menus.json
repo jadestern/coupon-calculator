@@ -33,22 +33,41 @@
     {
       "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[9200000002081]_20210415133656839.jpg",
       "name": "돌체 콜드 브루",
+      "category": "콜드 브루",
       "amount": {
         "solo": null,
         "doppio": null,
         "short": 6000,
-        "tall": 6600,
+        "tall": 6500,
         "grande": 7000,
         "venti": null
       }
     },
     {
       "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[9200000000487]_20210430112319040.jpg",
-      "name": "바닐라 크림 콜드 브루"
+      "name": "바닐라 크림 콜드 브루",
+      "category": "콜드 브루",
+      "amount": {
+        "solo": null,
+        "doppio": null,
+        "short": 5800,
+        "tall": 6300,
+        "grande": 6800,
+        "venti": null
+      }
     },
     {
       "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/03/[9200000003509]_20210322093452399.jpg",
-      "name": "벨벳 다크 모카 나이트로"
+      "name": "벨벳 다크 모카 나이트로",
+      "category": "리저브 드립",
+      "amount": {
+        "solo": null,
+        "doppio": null,
+        "short": null,
+        "tall": 8500,
+        "grande": 9000,
+        "venti": null
+      }
     },
     {
       "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/08/[9200000003661]_20210819094346176.jpg",
@@ -56,23 +75,68 @@
     },
     {
       "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2022/03/[9200000002672]_20220311105511600.jpg",
-      "name": "제주 비자림 콜드 브루"
+      "name": "제주 비자림 콜드 브루",
+      "category": "콜드 브루",
+      "amount": {
+        "solo": null,
+        "doppio": null,
+        "short": null,
+        "tall": null,
+        "grande": 6800,
+        "venti": null
+      }
     },
     {
       "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[9200000000038]_20210430113202458.jpg",
-      "name": "콜드 브루"
+      "name": "콜드 브루",
+      "category": "콜드 브루",
+      "amount": {
+        "solo": null,
+        "doppio": null,
+        "short": null,
+        "tall": 4900,
+        "grande": 5400,
+        "venti": 5900
+      }
     },
     {
       "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/02/[9200000001636]_20210225093600536.jpg",
-      "name": "콜드 브루 몰트"
+      "name": "콜드 브루 몰트",
+      "category": "리저브 드립",
+      "amount": {
+        "solo": null,
+        "doppio": null,
+        "short": null,
+        "tall": 8500,
+        "grande": null,
+        "venti": null
+      }
     },
     {
       "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[9200000003285]_20210416154437069.jpg",
-      "name": "콜드 브루 오트 라떼"
+      "name": "콜드 브루 오트 라떼",
+      "category": "콜드 브루",
+      "amount": {
+        "solo": null,
+        "doppio": null,
+        "short": 6000,
+        "tall": 5800,
+        "grande": 6300,
+        "venti": 6800
+      }
     },
     {
       "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/02/[9200000001635]_20210225092236748.jpg",
-      "name": "콜드 브루 플로트"
+      "name": "콜드 브루 플로트",
+      "category": "리저브 드립",
+      "amount": {
+        "solo": null,
+        "doppio": null,
+        "short": null,
+        "tall": 8000,
+        "grande": null,
+        "venti": null
+      }
     },
     {
       "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[106509]_20210430111852870.jpg",
@@ -84,11 +148,29 @@
     },
     {
       "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2022/04/[9200000004119]_20220412083025862.png",
-      "name": "라벤더 카페 브레베"
+      "name": "라벤더 카페 브레베",
+      "category": "리저브 에스프레소",      
+      "amount": {
+        "solo": null,
+        "doppio": null,
+        "short": null,
+        "tall": 7000,
+        "grande": null,
+        "venti": null
+      }
     },
     {
       "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2022/04/[9200000004120]_20220412082952150.png",
-      "name": "아이스 라벤더 카페 브레베"
+      "name": "아이스 라벤더 카페 브레베",
+      "category": "리저브 에스프레소",
+      "amount": {
+        "solo": null,
+        "doppio": null,
+        "short": null,
+        "tall": 7000,
+        "grande": null,
+        "venti": null
+      }
     },
     {
       "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2022/04/[9200000004124]_20220421141735529.jpg",
@@ -96,35 +178,107 @@
     },
     {
       "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[30]_20210415144252244.jpg",
-      "name": "에스프레소 콘 파나"
+      "name": "에스프레소 콘 파나",
+      "category": "에스프레소",
+      "amount": {
+        "solo": 4200,
+        "doppio": 4700,
+        "short": null,
+        "tall": null,
+        "grande": null,
+        "venti": null
+      }
     },
     {
       "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[25]_20210415144211211.jpg",
-      "name": "에스프레소 마키아또"
+      "name": "에스프레소 마키아또",
+      "category": "에스프레소",      
+      "amount": {
+        "solo": 4000,
+        "doppio": 4500,
+        "short": null,
+        "tall": null,
+        "grande": null,
+        "venti": null
+      }
     },
     {
       "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[110563]_20210426095937808.jpg",
-      "name": "아이스 카페 아메리카노"
+      "name": "아이스 카페 아메리카노",
+      "category": "에스프레소",      
+      "amount": {
+        "solo": null,
+        "doppio": null,
+        "short": null,
+        "tall": 4500,
+        "grande": 5000,
+        "venti": 6000
+      }
     },
     {
       "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[94]_20210430103337006.jpg",
-      "name": "카페 아메리카노"
+      "name": "카페 아메리카노",
+      "category": "에스프레소",      
+      "amount": {
+        "solo": null,
+        "doppio": null,
+        "short": null,
+        "tall": 4500,
+        "grande": 5000,
+        "venti": 6000
+      }
     },
     {
       "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[110582]_20210415142706078.jpg",
-      "name": "아이스 카라멜 마키아또"
+      "name": "아이스 카라멜 마키아또",
+      "category": "에스프레소",      
+      "amount": {
+        "solo": null,
+        "doppio": null,
+        "short": null,
+        "tall": 5900,
+        "grande": 6400,
+        "venti": 6900
+      }
     },
     {
       "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[126197]_20210415154609863.jpg",
-      "name": "카라멜 마키아또"
+      "name": "카라멜 마키아또",
+      "category": "에스프레소",      
+      "amount": {
+        "solo": null,
+        "doppio": null,
+        "short": null,
+        "tall": 5900,
+        "grande": 6400,
+        "venti": 6900
+      }
     },
     {
       "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[110601]_20210415143400773.jpg",
-      "name": "아이스 카푸치노"
+      "name": "아이스 카푸치노",
+      "category": "에스프레소",      
+      "amount": {
+        "solo": null,
+        "doppio": null,
+        "short": null,
+        "tall": 5000,
+        "grande": 5500,
+        "venti": 6000
+      }
     },
     {
       "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[38]_20210415154821846.jpg",
-      "name": "카푸치노"
+      "name": "카푸치노",
+      "category": "리저브 에스프레소",      
+      "amount": {
+        "solo": null,
+        "doppio": null,
+        "short": null,
+        "tall": 6500,
+        "grande": 7000,
+        "venti": null
+      }
     },
     {
       "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/02/[9200000001086]_20210225090838931.jpg",
@@ -132,11 +286,29 @@
     },
     {
       "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/02/[9200000001939]_20210225094313315.jpg",
-      "name": "바닐라 빈 라떼"
+      "name": "바닐라 빈 라떼",
+      "category": "리저브 에스프레소",      
+      "amount": {
+        "solo": null,
+        "doppio": null,
+        "short": null,
+        "tall": 7000,
+        "grande": 7500,
+        "venti": null
+      }
     },
     {
       "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/02/[9200000002095]_20210225095033382.jpg",
-      "name": "사케라또 비안코 오버 아이스"
+      "name": "사케라또 비안코 오버 아이스",
+      "category": "리저브 에스프레소",      
+      "amount": {
+        "solo": null,
+        "doppio": null,
+        "short": null,
+        "tall": 7500,
+        "grande": 8000,
+        "venti": null
+      }
     },
     {
       "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[128692]_20210426091933665.jpg",
@@ -148,23 +320,68 @@
     },
     {
       "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[128695]_20210426092031969.jpg",
-      "name": "아이스 스타벅스 돌체 라떼"
+      "name": "아이스 스타벅스 돌체 라떼",
+      "category": "에스프레소",      
+      "amount": {
+        "solo": null,
+        "doppio": null,
+        "short": null,
+        "tall": 5900,
+        "grande": 6400,
+        "venti": 6900
+      }
     },
     {
       "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[110569]_20210415143035989.jpg",
-      "name": "아이스 카페 라떼"
+      "name": "아이스 카페 라떼",
+      "category": "에스프레소",      
+      "amount": {
+        "solo": null,
+        "doppio": null,
+        "short": null,
+        "tall": 5000,
+        "grande": 5500,
+        "venti": 6000
+      }
     },
     {
       "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[41]_20210415133833725.jpg",
-      "name": "카페 라떼"
+      "name": "카페 라떼",
+      "category": "에스프레소",      
+      "amount": {
+        "solo": null,
+        "doppio": null,
+        "short": 4500,
+        "tall": 5000,
+        "grande": 5500,
+        "venti": 6000
+      }
     },
     {
       "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[110566]_20210415134334280.jpg",
-      "name": "아이스 카페 모카"
+      "name": "아이스 카페 모카",
+      "category": "에스프레소",      
+      "amount": {
+        "solo": null,
+        "doppio": null,
+        "short": null,
+        "tall": 5500,
+        "grande": 6000,
+        "venti": 6500
+      }
     },
     {
       "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[110572]_20210415155545375.jpg",
-      "name": "아이스 화이트 초콜릿 모카"
+      "name": "아이스 화이트 초콜릿 모카",
+      "category": "에스프레소",      
+      "amount": {
+        "solo": null,
+        "doppio": null,
+        "short": null,
+        "tall": 5900,
+        "grande": 6400,
+        "venti": 6900
+      }
     },
     {
       "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[46]_20210415134438165.jpg",
@@ -176,11 +393,30 @@
     },
     {
       "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[9200000002406]_20210415135507733.jpg",
-      "name": "바닐라 플랫 화이트"
+      "name": "바닐라 플랫 화이트",
+      "category": "에스프레소",      
+      "amount": {
+        "solo": null,
+        "doppio": null,
+        "short": 5400,
+        "tall": 5900,
+        "grande": null,
+        "venti": null
+      }
     },
     {
       "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[110612]_20210415133425373.jpg",
-      "name": "바닐라 스타벅스 더블 샷"
+      "name": "바닐라 스타벅스 더블 샷",
+      "category": "에스프레소",      
+      "amount": {
+        "solo": null,
+        "doppio": null,
+        "7oz": 5100,
+        "short": null,
+        "tall": 5900,
+        "grande": 6400,
+        "venti": 6900
+      }
     },
     {
       "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/04/[9200000002950]_20210426150654756.jpg",
